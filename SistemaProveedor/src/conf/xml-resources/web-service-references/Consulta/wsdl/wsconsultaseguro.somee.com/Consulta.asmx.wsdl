@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://desarrolloweb/webservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://desarrolloweb/webservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://desarrolloweb/webservice">
+      <s:element name="ConsultaProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nit" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigoPaciente" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaIC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaProveedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaProveedorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAfiliado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigoAfiliado" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaAfiliadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaAfiliadoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultaProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaProveedor" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaAfiliado" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaAfiliadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProveedorHttpGetIn">
+    <wsdl:part name="nit" type="s:string" />
+    <wsdl:part name="codigoPaciente" type="s:string" />
+    <wsdl:part name="fechaN" type="s:string" />
+    <wsdl:part name="fechaIC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProveedorHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoHttpGetIn">
+    <wsdl:part name="codigoAfiliado" type="s:string" />
+    <wsdl:part name="fechaN" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProveedorHttpPostIn">
+    <wsdl:part name="nit" type="s:string" />
+    <wsdl:part name="codigoPaciente" type="s:string" />
+    <wsdl:part name="fechaN" type="s:string" />
+    <wsdl:part name="fechaIC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaProveedorHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoHttpPostIn">
+    <wsdl:part name="codigoAfiliado" type="s:string" />
+    <wsdl:part name="fechaN" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaAfiliadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultaSoap">
+    <wsdl:operation name="ConsultaProveedor">
+      <wsdl:input message="tns:ConsultaProveedorSoapIn" />
+      <wsdl:output message="tns:ConsultaProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <wsdl:input message="tns:ConsultaAfiliadoSoapIn" />
+      <wsdl:output message="tns:ConsultaAfiliadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaHttpGet">
+    <wsdl:operation name="ConsultaProveedor">
+      <wsdl:input message="tns:ConsultaProveedorHttpGetIn" />
+      <wsdl:output message="tns:ConsultaProveedorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <wsdl:input message="tns:ConsultaAfiliadoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaAfiliadoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaHttpPost">
+    <wsdl:operation name="ConsultaProveedor">
+      <wsdl:input message="tns:ConsultaProveedorHttpPostIn" />
+      <wsdl:output message="tns:ConsultaProveedorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <wsdl:input message="tns:ConsultaAfiliadoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaAfiliadoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaSoap" type="tns:ConsultaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaProveedor">
+      <soap:operation soapAction="http://desarrolloweb/webservice/ConsultaProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <soap:operation soapAction="http://desarrolloweb/webservice/ConsultaAfiliado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaSoap12" type="tns:ConsultaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaProveedor">
+      <soap12:operation soapAction="http://desarrolloweb/webservice/ConsultaProveedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <soap12:operation soapAction="http://desarrolloweb/webservice/ConsultaAfiliado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaHttpGet" type="tns:ConsultaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ConsultaProveedor">
+      <http:operation location="/ConsultaProveedor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <http:operation location="/ConsultaAfiliado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaHttpPost" type="tns:ConsultaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ConsultaProveedor">
+      <http:operation location="/ConsultaProveedor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaAfiliado">
+      <http:operation location="/ConsultaAfiliado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Consulta">
+    <wsdl:port name="ConsultaSoap" binding="tns:ConsultaSoap">
+      <soap:address location="http://wsconsultaseguro.somee.com/Consulta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaSoap12" binding="tns:ConsultaSoap12">
+      <soap12:address location="http://wsconsultaseguro.somee.com/Consulta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaHttpGet" binding="tns:ConsultaHttpGet">
+      <http:address location="http://wsconsultaseguro.somee.com/Consulta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaHttpPost" binding="tns:ConsultaHttpPost">
+      <http:address location="http://wsconsultaseguro.somee.com/Consulta.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
